@@ -2,26 +2,16 @@ import React, { useEffect, useState } from "react";
 import RowItem from "./RowItem";
 import DropDowm from "./DropDown";
 import axios from "axios";
-function Table() {
-  const api = axios.create({
-    baseURL: `http://localhost:3000`,
-  });
+function Table(props) {
 
-  const [NftDetail, SetNftDetail] = useState([]);
-  const [Fiat, SetFiat] = useState("USD");
+  const [fiat,setFiat] = useState(true)
 
-  useEffect(() => {
-    async function fetchData() {
-      const detail = await api.get("/floor-price/tofu/meta-warden");
-      const detail2 = await api.get("/floor-price/opensea/cdao");
-      SetNftDetail([...NftDetail, detail.data, detail2.data]);
-    }
-    fetchData();
-  }, []);
-
+  const ToChangeFiat = () => {
+    setFiat(!fiat)
+  }
   return (
     <div className="container">
-      <DropDowm />
+      <DropDowm changeFiat={ ToChangeFiat }/>
       <table className="table">
         <thead>
           <tr>
@@ -58,12 +48,13 @@ function Table() {
           </tr>
         </tfoot>
         <tbody>
-          {NftDetail.map((item) => (
+          {props.nftDetail.map((item) => (
             <RowItem
               key={item.id}
               name={item.name}
               price={item.price}
               c_currency={item.c_currency}
+              f_currency={fiat ? item.usd_currency : item.thb_currency}
             />
           ))}
         </tbody>

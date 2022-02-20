@@ -1,4 +1,6 @@
+
 function RowItem(props) {
+
   return (
     <tr>
       <th>{props.key}</th>
@@ -12,7 +14,7 @@ function RowItem(props) {
       </td>
       <td>{`${props.price} ${props.c_currency}`}</td>
       <td>1</td>
-      <td></td>
+      <td>{parseFloat(props.f_currency) }</td>
     </tr>
   );
 }
