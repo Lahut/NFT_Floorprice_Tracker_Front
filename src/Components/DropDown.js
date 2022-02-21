@@ -9,7 +9,7 @@ function DropDown(props) {
       className={"dropdown " + (toggle ? "" : "is-active")}
       style={{ float: "right" }}
     >
-      <div class="select">
+      <div className="select">
         <select onChange={props.changeFiat} >
           <option value="USD">USD</option>
           <option value="THB">THB</option>

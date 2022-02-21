@@ -3,18 +3,18 @@ function RowItem(props) {
 
   return (
     <tr>
-      <th>{props.key}</th>
+      <th></th>
       <td>
         <a
-          href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-          title="Leicester City F.C."
+          href={props.url}
+          title={props.name}
         >
           {props.name}
         </a>{" "}
       </td>
       <td>{`${props.price} ${props.c_currency}`}</td>
       <td>1</td>
-      <td>{parseFloat(props.f_currency) }</td>
+      <td>{props.comma(Math.floor(props.f_currency))} {props.isUsd ? '$' : '฿'}</td>
     </tr>
   );
 }
